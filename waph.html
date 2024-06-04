@@ -54,7 +54,8 @@
       }
     } else {
       if (!(document.cookie == "username=YOURusername")) {
-        alert("Welcome Back To My Profile " + document.cookie + "!");
+        let username = document.cookie.slice(10);
+        alert("Welcome Back To My Profile " + username + "!");
       } else {
         alert("Welcome Back To My Profile!");
       }
