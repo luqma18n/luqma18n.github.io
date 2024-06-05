@@ -71,7 +71,16 @@
         $("#response").html("A programming joke of the day: " + result.joke);
       }
     );
-
+    // second API: Kanye West
+    $.get("https://api.kanye.rest", 
+        function (result) {
+          if (result.length == 0) {
+            return;
+          }
+          console.log(result);
+          $("#kanye").html("He said: " + result.quote);
+        }
+    );
   </script>
 </head>
 
@@ -439,6 +448,10 @@
               <a href="https://info.flagcounter.com/Q9yh"><img
                   src="https://s11.flagcounter.com/count2/Q9yh/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/"
                   alt="Flag Counter" border="0"></a>
+            </div>
+            <div class="container">
+              <h2>Kanye West Quoutes</h2>
+              <h4 id="kanye"></h4>
             </div>
           </div>
 
