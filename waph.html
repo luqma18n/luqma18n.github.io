@@ -81,16 +81,6 @@
           $("#kanye").html("He said: " + result.quote);
         }
     );
-    // Third API: Graphic
-    $.get("https://xkcd.com/info.0.json",
-      function (result) {
-        if (result.length == 0) {
-          return;
-        }
-        console.log(result);
-        $("#graphic").html(result.img);
-      }
-    );
   </script>
 </head>
 
@@ -462,8 +452,6 @@
             <div class="container">
               <h2>Kanye West Quoutes</h2>
               <h4 id="kanye"></h4>
-              <h2>Graphic</h2>
-              <div id="graphic"></div>
             </div>
           </div>
 
