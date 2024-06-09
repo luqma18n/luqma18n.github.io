@@ -412,10 +412,10 @@
                 <div id="digit-clock" style="color: rgb(0, 0, 0);"></div>
             </div>
             <div class="container">
-              <h2>Kanye West Quoutes</h2>
-              <h4 id="kanye">He said: Trust me ... I won't stop</h4>
-              <h6 style="color: rgb(0, 110, 255); font-style:italic">Disclaimer this a random generated Kanye West Quoute by WEB API</h6>
-
+              <h2>Random Quotes</h2>
+              <h4 id="quote" style="font-style:italic;"></h4>
+              <h5 id="quoteAuthor" style="font-style:italic;"></h5>
+              <h6 style="color: rgb(0, 110, 255); font-style:italic">Disclaimer this a random generated  Quote by WEB API</h6>
             </div>
           </div>
 
@@ -563,18 +563,19 @@
         }) 
       }, 60000);
 
-    // second API: Kanye West
+    // second API: random quote
     setInterval(function () {
-      $.get("https://api.kanye.rest",
+      $.get("https://dummyjson.com/quotes/random",
         function (result) {
           if (result.length == 0) {
             return;
           }
           console.log(result);
-          $("#kanye").html("He said: " + result.quote);
+          $("#quote").html(result.quote);
+          $("#quoteAuthor").html(result.author);
         })
       }, 60000);
-  
+      
     function displayTime() {
       var currentDate = new Date();
       if (currentDate) {
