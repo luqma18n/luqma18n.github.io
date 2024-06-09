@@ -541,15 +541,15 @@
       }
     } else {
       if (!(document.cookie == "username=YOURusername")) {
-        let username = document.cookie.slice(9);  
-        let currentDate = document.cookie.slice(10 + username.length + 11);
+        let username = document.cookie.slice(9, document.cookie.indexOf(";"));  
+        let currentDate = document.cookie.slice(10 + username.length + 11); 
         alert("Welcome Back To My Profile " + username + "! your last visit was on " + currentDate);
       } else {
         let currentDate = document.cookie.slice(32);
         alert("Welcome Back To My Profile! your last visit was on " + currentDate);
       }
     }
-
+    document.cookie = "";
     // first API: Joke API
     
     setInterval(function () {
