@@ -412,12 +412,12 @@
               <h5 id="quoteAuthor" style="font-style:italic;">Salma Hayek</h5>
               <h6 style="color: rgb(0, 110, 255); font-style:italic">Disclaimer this a random generated  Quote by DummyJSON</h6>
             </div>
-            <div className="container">
-              <h3>Enter A Value: </h3>
-              <input name="data" onkeypress="console.log('You have pressed a key')" id="data" required />
-              <input className="button round" type="button" value="jQuery Ajax POST Echo" onclick="jQueryAjaxPost()" />
+            <div class="container">
+              <h3>Enter A Value To Guess Your Age: </h3>
+              <input name="data" id="data" required />
+              <input class="button round" type="button" value="guess Age" onclick="guessAge($('#data').val())">
               <span id="error3"></span>
-              <div id="response"></div>
+              <div id="response2"></div>
               <h6 style="color: rgb(0, 110, 255); font-style:italic">Secure against XSS attacks</h6>
             </div>
           </div>
@@ -428,37 +428,12 @@
     </section><!-- End Contact Section -->
     <div id="root"></div>
     <script type="text/babel">
-      function jQueryAjaxPost() {
-          var input = $("#data").val();
-
-          // input validation
-          if (input.length == 0) {
-            $("#error3").html("The input field is empty!");
-            return;
-          }
-          if (!filterInput(input)) {
-            return;
-          } else {
-            let validInput = encodeInput(input);
-            $.post("echo.php", { data: validInput },
-              function (result) {
-                $("#response").html("Response from server:" + result);
-              }
-            );
-            $("#error3").html("");
-            $("#data").val("");
-          }
-        }
       class LetsConnect extends React.Component {
         render() {
           return (
             <div className="container">
-              <h3>Enter A Value: </h3>
-              <input name="data" id="data" required />
-              <input className="button round" type="button" value="jQuery Ajax POST Echo" onClick={() => jQueryAjaxPost()} />
-              <span id="error3"></span>
-              <div id="response"></div>
-              <h6>Secure against XSS attacks</h6>
+              <h3>Thank You for Visiting The Website, Lets Connect And Work On
+                Project</h3>
             </div>
           )
         }
@@ -468,11 +443,6 @@
         document.getElementById('root')
       );
     </script>
-
-                <!-- <div className="container">
-                  <h3 style="color: rgb(0, 110, 255); font-style:italic">Thank You for Visiting The Website, Lets Connect And Work On
-                    Project</h3>
-                </div> -->
   </main><!-- End #main -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center active"><i
@@ -630,8 +600,7 @@
       drawTime(ctx, radius);
     }
     function encodeInput(input) {
-        // ipnut validation
-        console.log(input);
+        //input validation
         if (input) {
 
           if (input.length == 0) {
@@ -652,18 +621,40 @@
         return;
       }
       if (input.search("alert") >= 0) {
-        console.log(input);
         $("#error3").html("The input field should not contain alert!");
         return;
       }
       if (input.search("javascript") >= 0) {
-        console.log(input);
         $("#error3").html("The input field should not contain javascript!");
         return;
       }
       return input;
     }
+    async function guessAge(name) {
 
+        // input validation
+        if (name.length == 0) {
+          $("#error3").html("The input field is empty!");
+          return;
+        }
+        if (!filterInput(name)) {
+          return;
+        } else {
+          let validName = encodeInput(name);
+          if (validName != null) {
+            const response = await fetch("https://api.agify.io/?name=" + validName);
+            const result = await response.json();
+            console.log(result);
+            // result validation
+            if (result.length == 0) {
+              return;
+            }
+            $("#error3").html("");
+            $("#response2").html("Hi " + name + ", your age should be " + result.age);
+          }
+        }
+
+      }
   </script>
 </body>
 
