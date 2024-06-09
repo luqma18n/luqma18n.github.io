@@ -544,7 +544,7 @@
       if (!(document.cookie == "username=YOURusername")) {
         let info = document.cookie.split(';');
         let username = info[0].slice(9);  
-        let currentDate = info[1].slice(11); 
+        let currentDate = info[1];
         console.log("Welcome Back To My Profile " + username + "! your last visit was on " + currentDate);
       } else {
         let currentDate = document.cookie.slice(32);
