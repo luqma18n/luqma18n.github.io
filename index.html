@@ -532,24 +532,25 @@
       let currentDate = new Date();
       let username = prompt("Please enter your name: ");
       if (username) {
-        document.cookie = 'username=' + username + ';visitDate=' + currentDate;
-        alert("Welcome To My Profile " + username + "! you visited us today on " + currentDate);
+        document.cookie = 'username=' + username;
+        document.cookie = 'visitDate=' + currentDate;
+        console.log("Welcome To My Profile " + username + "! you visited us today on " + currentDate);
       } else {
         document.cookie = 'username=YOURusername' + ';visitDate=' + currentDate;;
         document.cookie = 'visitDate=' + currentDate;
-        alert("Welcome To My Profile!");
+        console.log("Welcome To My Profile!");
       }
     } else {
       if (!(document.cookie == "username=YOURusername")) {
-        let username = document.cookie.slice(9, document.cookie.indexOf(";"));  
-        let currentDate = document.cookie.slice(10 + username.length + 11); 
-        alert("Welcome Back To My Profile " + username + "! your last visit was on " + currentDate);
+        let info = document.cookie.split(';');
+        let username = info[0].slice(9);  
+        let currentDate = info[1].slice(10 + username.length + 11); 
+        console.log("Welcome Back To My Profile " + username + "! your last visit was on " + currentDate);
       } else {
         let currentDate = document.cookie.slice(32);
-        alert("Welcome Back To My Profile! your last visit was on " + currentDate);
+        console.log("Welcome Back To My Profile! your last visit was on " + currentDate);
       }
     }
-    document.cookie = "";
     // first API: Joke API
     
     setInterval(function () {
