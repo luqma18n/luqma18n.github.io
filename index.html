@@ -534,21 +534,21 @@
       if (username) {
         document.cookie = 'username=' + username;
         document.cookie = 'visitDate=' + currentDate.toString();
-        console.log("Welcome To My Profile " + username + "! you visited us today on " + currentDate);
+        alert("Welcome To My Profile " + username + "! you visited us today on " + currentDate);
       } else {
         document.cookie = 'username=YOURusername' + ';visitDate=' + currentDate;;
         document.cookie = 'visitDate=' + currentDate.toString();
-        console.log("Welcome To My Profile!");
+        alert("Welcome To My Profile!");
       }
     } else {
       if (!(document.cookie == "username=YOURusername")) {
         let info = document.cookie.split(';');
         let username = info[0].slice(9);  
         let currentDate = info[1].slice(11);
-        console.log("Welcome Back To My Profile " + username + "! your last visit was on " + currentDate);
+        alert("Welcome Back To My Profile " + username + "! your last visit was on " + currentDate);
       } else {
         let currentDate = document.cookie.slice(32);
-        console.log("Welcome Back To My Profile! your last visit was on " + currentDate);
+        alert("Welcome Back To My Profile! your last visit was on " + currentDate);
       }
     }
     
