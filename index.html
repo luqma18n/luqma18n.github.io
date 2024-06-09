@@ -533,7 +533,6 @@
       let username = prompt("Please enter your name: ");
       if (username) {
         document.cookie = 'username=' + username + ';visitDate=' + currentDate;
-        //document.cookie = 'visitDate=' + currentDate;
         alert("Welcome To My Profile " + username + "! you visited us today on " + currentDate);
       } else {
         document.cookie = 'username=YOURusername' + ';visitDate=' + currentDate;;
@@ -543,8 +542,7 @@
     } else {
       if (!(document.cookie == "username=YOURusername")) {
         let username = document.cookie.slice(9);  
-        console.log(username.length);
-        let currentDate = document.cookie.slice(10 + username.length);
+        let currentDate = document.cookie.slice(10 + username.length + 11);
         alert("Welcome Back To My Profile " + username + "! your last visit was on " + currentDate);
       } else {
         let currentDate = document.cookie.slice(32);
