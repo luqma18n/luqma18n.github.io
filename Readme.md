@@ -23,7 +23,7 @@ In the first task, I was required to deploy the website to github.io as the foll
 Website: https://luqma18n.github.io/index.html
 My username in github is luqma18n, and the index page is the landing page for the website. 
 
-![Landing Page Link](images/landingPageLink.png){width=70%}
+![Landing Page Link](images/landingPageLink.png)
 
 
 #### B
@@ -34,7 +34,7 @@ Moreover, the landing page has a link to the waph.html page. The waph.html page 
 <a href="waph.html" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>WAPH Course Overview</span></a>
 ```
 
-![WAPH Page](images/WAPHPage.png){width=70%}
+![WAPH Page](images/WAPHPage.png)
 
 
 ### Part 2 - Non-technical requirements
@@ -48,7 +48,7 @@ https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
 
 The template was customized and tailored to fit my target.
 
-![Landing Page](images/landingPage.png){width=70%}
+![Landing Page](images/landingPage.png)
 
 #### B. Page Counter
 
@@ -60,7 +60,7 @@ Moreover, a page counter was used as the following:
 		alt="Flag Counter" border="0"></a>
 ```
 
-![Page Counter](images/pageCounter.png){width=70%}
+![Page Counter](images/pageCounter.png)
 
 The page counter keeps track of the visitors to the website by showing the country and the number of visitors from that country. 
 
@@ -85,18 +85,18 @@ setInterval(function () {
 The code is going to show a new joke every minute.
 
 
-![jQuery and joke api](images/jokeAPI.png){width=70%}
+![jQuery and joke api](images/jokeAPI.png)
 
 #### B. From Lab 2
 
 In addition to the jQuery, from lab 2 the following was implemented, analog and digital clocks, show/hide email functionality, a function of my choice
 
 
-![Analog Clock](images/AnalogClock.png){width=70%}
+![Analog Clock](images/AnalogClock.png)
 
-![Digital Clock](images/DigitalClock.png){width=70%}
+![Digital Clock](images/DigitalClock.png)
 
-![Show/Hide Email](images/showEmail.png){width=70%}
+![Show/Hide Email](images/showEmail.png)
 
 
 #### C. API
@@ -124,7 +124,7 @@ function (result) {
 
 ```
 
-![Quote API](images/QuoteAPI.png){width=70%}
+![Quote API](images/QuoteAPI.png)
 
 ##### II. Google Maps API
 The following API is going to show a map for a specific location (in my case the map will show 'University of Cincinnati)
@@ -138,7 +138,7 @@ referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/emb
 
 ```
 
-![Google Maps API](images/GoogleMapsAPI.png){width=70%}
+![Google Maps API](images/GoogleMapsAPI.png)
 
 
 
@@ -175,4 +175,4 @@ if (document.cookie.indexOf("username") < 0) {
 
 ```
 
-![JavaScript Cookies](images/cookies.png){width=70%}
+![JavaScript Cookies](images/cookies.png)
