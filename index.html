@@ -25,10 +25,13 @@
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
+  <!-- react related -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  
+
 <!-- CSS clock additions -->
   <style>
     .button {
@@ -409,13 +412,67 @@
               <h5 id="quoteAuthor" style="font-style:italic;">Salma Hayek</h5>
               <h6 style="color: rgb(0, 110, 255); font-style:italic">Disclaimer this a random generated  Quote by DummyJSON</h6>
             </div>
+            <div className="container">
+              <h3>Enter A Value: </h3>
+              <input name="data" onkeypress="console.log('You have pressed a key')" id="data" required />
+              <input className="button round" type="button" value="jQuery Ajax POST Echo" onclick="jQueryAjaxPost()" />
+              <span id="error3"></span>
+              <div id="response"></div>
+              <h6 style="color: rgb(0, 110, 255); font-style:italic">Secure against XSS attacks</h6>
+            </div>
           </div>
 
         </div>
 
       </div>
     </section><!-- End Contact Section -->
+    <div id="root"></div>
+    <script type="text/babel">
+      function jQueryAjaxPost() {
+          var input = $("#data").val();
 
+          // input validation
+          if (input.length == 0) {
+            $("#error3").html("The input field is empty!");
+            return;
+          }
+          if (!filterInput(input)) {
+            return;
+          } else {
+            let validInput = encodeInput(input);
+            $.post("echo.php", { data: validInput },
+              function (result) {
+                $("#response").html("Response from server:" + result);
+              }
+            );
+            $("#error3").html("");
+            $("#data").val("");
+          }
+        }
+      class LetsConnect extends React.Component {
+        render() {
+          return (
+            <div className="container">
+              <h3>Enter A Value: </h3>
+              <input name="data" id="data" required />
+              <input className="button round" type="button" value="jQuery Ajax POST Echo" onClick={() => jQueryAjaxPost()} />
+              <span id="error3"></span>
+              <div id="response"></div>
+              <h6>Secure against XSS attacks</h6>
+            </div>
+          )
+        }
+      }
+      ReactDOM.render(
+        <LetsConnect />,
+        document.getElementById('root')
+      );
+    </script>
+
+                <!-- <div className="container">
+                  <h3 style="color: rgb(0, 110, 255); font-style:italic">Thank You for Visiting The Website, Lets Connect And Work On
+                    Project</h3>
+                </div> -->
   </main><!-- End #main -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center active"><i
@@ -572,6 +629,41 @@
       drawNumbers(ctx, radius);
       drawTime(ctx, radius);
     }
+    function encodeInput(input) {
+        // ipnut validation
+        console.log(input);
+        if (input) {
+
+          if (input.length == 0) {
+            return;
+          }
+
+          const encoded = document.createElement('div');
+          encoded.innerText = input;
+          return encoded.innerHTML;
+        }
+
+      }
+    function filterInput(input) {
+      let inputArray = (Array.from(input));
+
+      if (inputArray.find((s) => s == "<")) {
+        $("#error3").html("The input should not contain tags!");
+        return;
+      }
+      if (input.search("alert") >= 0) {
+        console.log(input);
+        $("#error3").html("The input field should not contain alert!");
+        return;
+      }
+      if (input.search("javascript") >= 0) {
+        console.log(input);
+        $("#error3").html("The input field should not contain javascript!");
+        return;
+      }
+      return input;
+    }
+
   </script>
 </body>
 
