@@ -37,6 +37,29 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
+<!-- CSS clock additions -->
+  <style>
+    .button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 5px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+  
+    .round {
+      border-radius: 8px;
+    }
+  
+  </style>
+
+
+
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -71,16 +94,47 @@
         $("#response").html(result.joke);
       }
     );
+
     // second API: Kanye West
-    $.get("https://api.kanye.rest", 
-        function (result) {
-          if (result.length == 0) {
-            return;
-          }
-          console.log(result);
-          $("#kanye").html("He said: " + result.quote);
+    $.get("https://api.kanye.rest",
+      function (result) {
+        if (result.length == 0) {
+          return;
         }
+        console.log(result);
+        $("#kanye").html("He said: " + result.quote);
+      }
     );
+    // Third API: Graphic
+    $.get("https://api.api-ninjas.com/v1/randomimage?category=office",
+      function (result) {
+        if (result.length == 0) {
+          return;
+        }
+        console.log(result);
+        $("#graphic").html(result.img);
+      }
+    );
+    function displayTime() {
+      var currentDate = new Date();
+      if (currentDate) {
+        document.getElementById('digit-clock').innerHTML = "Current Time: " + currentDate;
+      } else {
+        return;
+      }
+    }
+    setInterval(displayTime, 500);
+    var canvas = document.getElementById("analog-clock");
+    var ctx = canvas.getContext("2d");
+    var radius = canvas.height / 2;
+    ctx.translate(radius, radius);
+    radius = radius * 0.90;
+    setInterval(drawClock, 1000);
+    function drawClock() {
+      drawFace(ctx, radius);
+      drawNumbers(ctx, radius);
+      drawTime(ctx, radius);
+    }
   </script>
 </head>
 
@@ -104,10 +158,16 @@
 
       <nav id="navbar" class="nav-menu navbar">
         <ul>
-          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="#hero" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Home</span></a></li>
           <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-          <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+          <li><a href="#resume" class="nav-link scrollto active"><i class="bx bx-file-blank"></i>
+              <span>Resume</span></a></li>
           <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+          <li><a href="#courseOverview.pdf" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Web Application And Hacking Course Overview</span></a></li>
+          <li><div id="digit-clock"></div>
+            <canvas id="analog-clock" width="150" height="150" style="background-color: #999;"></canvas>
+            <script src="https://waph-uc.github.io/clock.js"></script>
+          </li> 
         </ul>
       </nav><!-- .nav-menu -->
     </div>
@@ -117,8 +177,8 @@
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="hero-container aos-init aos-animate" data-aos="fade-in">
       <h1>Luqman Al Hasni</h1>
-      <p>I'm <span class="typed" data-typed-items="Developer, Photographer">Develop</span><span class="typed-cursor"
-          aria-hidden="true">|</span></p>
+      <p>I'm <span class="typed" data-typed-items="Developer, Photographer">Photog</span><span class="typed-cursor"
+          aria-hidden="true">|</span><span class="typed-cursor" aria-hidden="true">|</span></p>
     </div>
   </section><!-- End Hero -->
 
@@ -143,8 +203,7 @@
           </p>
           <br>
           <h2>Joke of the day</h2>
-          <h4 id="response">A programming joke of the day: If Bill Gates had a dime for every time Windows crashed ...
-            Oh wait, he does.</h4>
+          <h4 id="response">If Bill Gates had a dime for every time Windows crashed ... Oh wait, he does.</h4>
         </div>
 
         <div class="row">
@@ -294,7 +353,6 @@
 
         <div class="section-title">
           <h2>Resume</h2>
-
           <!-- open resume  -->
           <a href="luqmanAlhasni_resume.pdf" download="Luqman_Al_Hasni_Resume">Open My Resume</a>
 
@@ -451,7 +509,9 @@
             </div>
             <div class="container">
               <h2>Kanye West Quoutes</h2>
-              <h4 id="kanye"></h4>
+              <h4 id="kanye">He said: Trust me ... I won't stop</h4>
+              <h2>Graphic</h2>
+              <img id="graphic">
             </div>
           </div>
 
@@ -478,7 +538,7 @@
     </div>
   </footer><!-- End  Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center active"><i
       class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
@@ -525,6 +585,40 @@
       }
     }
   </style>
+  <style data-typed-js-cursor-css="true">
+    .typed-cursor {
+      opacity: 1;
+    }
+
+    .typed-cursor.typed-cursor--blink {
+      animation: typedjsBlink 0.7s infinite;
+      -webkit-animation: typedjsBlink 0.7s infinite;
+      animation: typedjsBlink 0.7s infinite;
+    }
+
+    @keyframes typedjsBlink {
+      50% {
+        opacity: 0.0;
+      }
+    }
+
+    @-webkit-keyframes typedjsBlink {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+
+
+
 
 
 
